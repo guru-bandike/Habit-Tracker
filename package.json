@@ -1,0 +1,20 @@
+{
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": "Habit-tracker is a sophisticated app designed to help users build and maintain positive routines. Habit-Tracker empowers users to achieve their personal and professional goals through consistent daily practices.",
+  "main": "server.js",
+  "scripts": {
+    "start": " node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guru-bandike/Habit-Tracker.git"
+  },
+  "author": "Guru Bandike",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guru-bandike/Habit-Tracker/issues"
+  },
+  "homepage": "https://github.com/guru-bandike/Habit-Tracker#readme"
+}
