@@ -1,0 +1,20 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25vh;
+}
+
+.welcome-txt {
+  width: 100%;
+  text-align: center;
+  font-size: 6rem;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2vh;
+}
