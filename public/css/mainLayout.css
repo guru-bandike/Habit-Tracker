@@ -1,0 +1,21 @@
+body {
+  background-color: #d6cdff;
+}
+
+.brand {
+  border-radius: 3px;
+}
+
+/* Adjusting font size for smaller screens */
+@media (max-width: 576px) {
+  html {
+    font-size: 14px; /* 1rem = 14px */
+  }
+}
+
+/* Adjusting font size for larger screens */
+@media (min-width: 769px) {
+  html {
+    font-size: 18px; /* 1rem = 18px */
+  }
+}

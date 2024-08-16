@@ -1,0 +1,29 @@
+.welcome-txt {
+  width: 100%;
+  text-align: center;
+  font-size: 6rem;
+  margin-top: 25vh;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2vh;
+}
+
+.go-to-habits-btn {
+  color: rgb(36, 156, 3);
+  font-weight: bolder;
+  padding: 0.5rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  margin-top: 2vh;
+}
+
+.go-to-habits-btn:hover {
+  color: black;
+  border-color: rgba(36, 156, 3, 0.819);
+  background-color: rgba(36, 156, 3, 0.636);
+}
