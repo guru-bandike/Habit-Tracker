@@ -8,6 +8,7 @@ import path from 'path';
 // Import necessary Internal modules
 import homeRouter from './src/routers/home.routes.js';
 import habitsRouter from './src/routers/habit.routes.js';
+import progressRouter from './src/routers/progress.routes.js';
 import handleInvalidRoute from './src/middlewares/handleInvalidRoute.middleware.js';
 import handleApplicationLevelErrors from './src/middlewares/handleApplicationLevelErrors.middleware.js';
 
@@ -27,6 +28,9 @@ app.use('/', homeRouter);
 
 // Mount Habits Router to handle habits related requests
 app.use('/habits', habitsRouter);
+
+// Mount Progress Router to handle progress related requests
+app.use('/progress', progressRouter);
 
 // Handle invalid routes
 app.use(handleInvalidRoute);

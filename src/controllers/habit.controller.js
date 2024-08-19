@@ -65,23 +65,4 @@ export default class HabitController {
       next(err);
     }
   }
-
-  async toggleProgress(req, res, next) {
-    const { habitId } = req.params;
-    const { date } = req.body;
-
-    try {
-      await validateMongodbObjectId(habitId, 'haibt');
-
-      const toggledProgress = await habitRepo.toggleProgress(habitId, date);
-
-      res.status(200).json({
-        success: true,
-        message: 'Habit progress successfully toggled!',
-        toggledProgress,
-      });
-    } catch (err) {
-      next(err);
-    }
-  }
 }

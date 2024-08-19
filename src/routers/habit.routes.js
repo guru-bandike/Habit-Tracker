@@ -10,7 +10,6 @@ habitsRouter.get('/', habitsController.renderHabitsView);
 habitsRouter.get('/all', habitsController.getAll);
 habitsRouter.get('/all-with-today-progress', habitsController.getAllWithTodayProgress);
 habitsRouter.post('/', habitsController.add);
-habitsRouter.post('/:habitId/toggle-progress', validateDate, habitsController.toggleProgress);
 habitsRouter.delete('/:id', habitsController.delete);
 
 export default habitsRouter;

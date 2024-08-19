@@ -150,7 +150,7 @@ const toggleProgress = async (habitId) => {
   try {
     // Request
     const result = await (
-      await fetch(`/habits/${habitId}/toggle-progress`, {
+      await fetch(`/progress/${habitId}/toggle`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
