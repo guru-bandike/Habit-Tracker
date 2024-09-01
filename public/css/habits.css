@@ -36,7 +36,7 @@
   margin-left: 5px;
 }
 
-.toggle-progress-btn,
+.progress-toggle-btn,
 .delete-habit-btn {
   flex-shrink: 0;
   display: flex;
@@ -51,17 +51,17 @@
 }
 
 .delete-habit-btn {
-  background-color: #de3124;
+  background-color: #e0493e;
 }
 
-.toggle-progress-btn.done {
+.progress-toggle-btn.done {
   background-color: #059d06;
 }
 
-.toggle-progress-btn.not-done {
-  background-color: #de3124;
+.progress-toggle-btn.not-done {
+  background-color: #e0493e;
 }
 
-.toggle-progress-btn.none {
+.progress-toggle-btn.none {
   background-color: #acacac;
 }

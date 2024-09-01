@@ -1,3 +1,5 @@
+const spinner = document.getElementById('spinner');
+
 document.addEventListener('DOMContentLoaded', function () {
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.nav-link');
@@ -11,9 +13,20 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-const loadTooltip = () => {
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-  const tooltipList = [...tooltipTriggerList].map(
-    (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-  );
+const showSpinner = () => {
+  spinner.classList.remove('d-none');
+};
+
+const hideSpinner = () => {
+  spinner.classList.add('d-none');
+};
+
+// Helper function to show alert
+const showAlert = (message, type) => {
+  alertContainer.innerHTML = `
+    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    `;
 };

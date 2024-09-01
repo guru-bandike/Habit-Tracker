@@ -14,16 +14,13 @@ let addHabitController;
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Show spinner
-    habitList.innerHTML = ` 
-    <div class="spinner-border" style="margin-left: 50%" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>`;
+    showSpinner();
 
     // Fetch habits with today progress
     const result = await (await fetch('/habits/all-with-today-progress')).json();
 
     // Hide spinner
-    habitList.innerHTML = '';
+    hideSpinner();
 
     // If fetching habits was Not successful, Log failure message
     if (!result.success) return console.log(result.message);
@@ -138,10 +135,10 @@ const deleteHabit = async (habitId) => {
 const toggleProgress = async (habitId) => {
   const todayDate = new Date();
   const toggleProgressElem = document.querySelector(
-    `.toggle-progress-btn[data-habit-id="${habitId}"]`
+    `.progress-toggle-btn[data-habit-id="${habitId}"]`
   );
   const toggleProgressSpinner = document.querySelector(
-    `.toggle-progress-btn[data-habit-id="${habitId}"] .spinner-border`
+    `.progress-toggle-btn[data-habit-id="${habitId}"] .spinner-border`
   );
 
   toggleProgressElem.setAttribute('disabled', true);
@@ -167,7 +164,7 @@ const toggleProgress = async (habitId) => {
 
     // Else, Update UI
 
-    toggleProgressElem.className = `toggle-progress-btn ${result.toggledProgress.status}`;
+    toggleProgressElem.className = `progress-toggle-btn ${result.toggledProgress.status}`;
     toggleProgressElem.setAttribute('data-bs-title', `${result.toggledProgress.status}`);
 
     // Update Tooltip
@@ -218,7 +215,7 @@ const displayHabit = (habit) => {
             <span class="visually-hidden">Loading...</span>
           </div>
         </button> 
-        <button class="toggle-progress-btn ${progressStatus}" data-habit-id="${habit._id}" data-bs-toggle="tooltip"  data-bs-title="${progressStatus}" onclick="toggleProgress('${habit._id}')">  
+        <button class="progress-toggle-btn ${progressStatus}" data-habit-id="${habit._id}" data-bs-toggle="tooltip"  data-bs-title="${progressStatus}" onclick="toggleProgress('${habit._id}')">  
           <div class="spinner-border d-none text-primary spinner-border-sm" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -230,18 +227,8 @@ const displayHabit = (habit) => {
 
   // Update tooltip
   new bootstrap.Tooltip(
-    document.querySelector(`.habit-wrapper .toggle-progress-btn[data-habit-id="${habit._id}"]`)
+    document.querySelector(`.habit-wrapper .progress-toggle-btn[data-habit-id="${habit._id}"]`)
   );
-};
-
-// Helper function to show alert
-const showAlert = (message, type) => {
-  alertContainer.innerHTML = `
-    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-      ${message}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    `;
 };
 
 // - - - - - - - - - - - - - - - - Helper Function Section: End - - - - - - - - - - - - - - - - //

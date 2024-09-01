@@ -1,14 +1,70 @@
-<main>
-  <p>hey</p>
-  <div class="grid-container">
-    <div class="grid-item">1</div>
-    <div class="grid-item">2</div>
-    <div class="grid-item">3</div>
-    <div class="grid-item">4</div>
-    <div class="grid-item">5</div>
-    <div class="grid-item">6</div>
-    <div class="grid-item">7</div>
-    <div class="grid-item">8</div>
-    <div class="grid-item">9</div>
+<% 
+  const { numOfDays, monthNum, month, year } = monthDetails; 
+  const prevMonth = new Date(year, monthNum - 1, 1).toISOString();
+  const nextMonth = new Date(year, monthNum + 1, 1).toISOString();
+%>
+
+<main class="container-md p-md-3">
+  <div class="progress-table-container">
+    <div class="table-heading-wrapper">
+      <div class="table-heading">
+        <a class="get-prev-month-prog-btn" href="/progress?date=<%=prevMonth%>">
+          <img src="/images/leftArrow.svg"/>
+        </a>
+        <%= month %> - <%= year %>  
+        <a class="get-next-month-prog-btn" href="/progress?date=<%=nextMonth%>">
+          <img src="/images/rightArrow.svg"/>
+        </a>
+      </div>
+    </div>
+    <table class="progress-table">
+      <thead>
+        <tr>
+          <th class="habits-heading-wrapper"><div class="habits-heading">Habits</div></th>
+          <% const today = new Date(); %>
+          <% for (let day = 1; day <= numOfDays ; day++) { 
+                const currentDay = new Date(year, monthNum, day); 
+                const isToday = currentDay.toDateString() === today.toDateString();
+          %>
+            <th class="date-wrapper <%= isToday ? 'today' : '' %>" <% if(isToday) { %> data-is-today="true" <% } %> >
+              <div class="date"><%= day %></div>
+              <div class="day">
+                <%= currentDay.toLocaleString('en-us', { weekday: 'short' }) %>
+              </div>
+            </th>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody>
+        <% 
+          const habitsMap = {}; 
+          monthProgress.forEach(progress => { 
+            if (!habitsMap[progress.habit]) { 
+              habitsMap[progress.habit] = {}; 
+            } 
+            
+            const day = new Date(progress.date).getDate(); 
+            
+            habitsMap[progress.habit][day] = progress.status; 
+          }); 
+        %>
+        
+        <% for (let habit of habits) { %>
+          <tr>
+            <td class="habit-name-wrapper">
+              <div class="habit-name"><%= habit.name %></div>
+            </td>
+            <% for (let day = 1; day <= numOfDays; day++) { %>
+              <td class="progress-wrapper">
+                <% const status = habitsMap[habit._id]?.[day] || 'none'; 
+                   const date = new Date(year, monthNum, day).toISOString();
+                %>
+                <div class="progress-toggle-btn <%= status %>" data-habitId="<%= habit._id %>" data-date="<%= date %>" data-status="<%= status %>" data-bs-toggle="tooltip" data-bs-title="<%= status %>"></div>
+              </td>
+            <% } %>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
   </div>
 </main>

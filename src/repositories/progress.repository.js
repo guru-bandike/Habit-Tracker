@@ -16,13 +16,13 @@ export default class ProgressRepository {
 
     // Find Progress
     const HabitsProgress = await ProgressModel.find({
-      habitId: { $in: habitIds },
+      habit: { $in: habitIds },
       date: { $gte: startOfFrom, $lte: endOfTill },
     });
 
     // Combine both habits and progress
     const habitsWithProgress = habits.map((h) => {
-      const progress = HabitsProgress.filter((p) => p.habitId.equals(h._id));
+      const progress = HabitsProgress.filter((p) => p.habit.equals(h._id));
 
       return {
         _id: h._id,
@@ -32,6 +32,15 @@ export default class ProgressRepository {
     });
 
     return habitsWithProgress;
+  }
+
+  // Method to get month progress
+  async getMonthProgress(date) {
+    const { monthStart, monthEnd } = this.#getMonthStartEnd(date);
+
+    return await ProgressModel.find({
+      date: { $gte: monthStart, $lte: monthEnd },
+    });
   }
 
   // Method to toggle specific habit progress on specific date
@@ -62,7 +71,7 @@ export default class ProgressRepository {
     } else {
       // Else create new progress with 'Done' status
       const newProgress = await ProgressModel.create({
-        habitId,
+        habit: habitId,
         date: new Date(date),
         status: 'done',
       });
@@ -72,7 +81,7 @@ export default class ProgressRepository {
 
   // Helper method to Delete progresse by Habit ID
   async deleteByHabitId(habitId) {
-    await ProgressModel.deleteMany({ habitId });
+    await ProgressModel.deleteMany({ habit: habitId });
   }
 
   // - - - - - - - - - - - - Private Helper Method Section: Start - - - - - - - - - - - - //
@@ -81,9 +90,24 @@ export default class ProgressRepository {
     const endOfTill = new Date(till).setHours(23, 59, 59, 999);
 
     return await ProgressModel.findOne({
-      habitId,
+      habit: habitId,
       date: { $gte: startOfFrom, $lte: endOfTill },
     });
+  }
+
+  // Helper method to get specified date's month start and end
+  #getMonthStartEnd(date) {
+    const dateObj = new Date(date);
+
+    // Get the start of the month
+    const monthStart = new Date(dateObj.getFullYear(), dateObj.getMonth(), 1);
+    monthStart.setHours(0, 0, 0, 0); // Ensure the time is set to midnight
+
+    // Get the end of the month
+    const monthEnd = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0);
+    monthEnd.setHours(23, 59, 59, 999); // Ensure the time is set to just before midnight
+
+    return { monthStart, monthEnd };
   }
   // - - - - - - - - - - - - Private Helper Method Section: End - - - - - - - - - - - - //
 }
