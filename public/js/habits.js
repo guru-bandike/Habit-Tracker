@@ -193,7 +193,7 @@ addHabitModal.addEventListener('hide.bs.modal', () => {
 addHabitForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  if (addHabitBtn.attributes.includes('disabled')) return;
+  if (addHabitBtn.hasAttribute('disabled')) return;
 
   addHabit();
 });

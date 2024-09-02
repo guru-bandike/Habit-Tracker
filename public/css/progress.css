@@ -1,5 +1,5 @@
 body {
-  min-width: 277px;
+  min-width: 285px;
 }
 
 .progress-table-container {
@@ -87,7 +87,7 @@ body {
 .habits-heading-wrapper,
 .habit-name-wrapper {
   position: sticky;
-  width: 25vmax;
+  width: 20vmax;
   font-weight: bold;
   top: -1px;
   left: -1px;
