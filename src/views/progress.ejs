@@ -52,7 +52,7 @@
         <% for (let habit of habits) { %>
           <tr>
             <td class="habit-name-wrapper">
-              <div class="habit-name"><%= habit.name %></div>
+              <div class="habit-name"><%= habit.emoji %> <%= habit.name %></div>
             </td>
             <% for (let day = 1; day <= numOfDays; day++) { %>
               <td class="progress-wrapper">

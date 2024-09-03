@@ -207,7 +207,7 @@ const displayHabit = (habit) => {
     'afterbegin',
     `
     <li class="habit-wrapper" data-habit-id="${habit._id}">
-      <span class="habit-name">${habit.name}</span> 
+      <span class="habit-name">${habit.emoji} ${habit.name}</span> 
       <span class="habit-btns-wrapper"> 
         <button class="delete-habit-btn" data-habit-id="${habit._id}" onclick="deleteHabit('${habit._id}')">
           <img src="/images/delete.svg">

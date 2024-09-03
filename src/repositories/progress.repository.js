@@ -27,6 +27,7 @@ export default class ProgressRepository {
       return {
         _id: h._id,
         name: h.name,
+        emoji: h.emoji,
         progress: progress.length ? progress : [],
       };
     });
