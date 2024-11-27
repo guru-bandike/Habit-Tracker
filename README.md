@@ -1,7 +1,7 @@
 <h1 align="center" style="font-weight: bolder; color: #059d06">Habit Tracker</h1>
 
 <p align="center">
-  <a href="https://habit-tracker-8cju.onrender.com/" target="_blank">View Live App</a>
+  <a href="https://habit-tracker-two-kohl.vercel.app/" target="_blank">View Live App</a>
 </p>
 
 ## Project Description
